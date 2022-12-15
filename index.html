@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Online Mips Emulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap -->
+    <link href="./bootstrap.min.css" rel="stylesheet" />
+    <link href="./main.css" rel="stylesheet" />
+    <style></style>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <link rel="stylesheet" href="./codemirror.css" />
+    <script src="./js/lib/codemirror.js"></script>
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./js/lib/underscore-min.js"></script>
+    <script src="./js/main.js"></script>
+  </head>
+  <body>
+    <div id="main" class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div id="editorContainer" class="CodeMirror">
+            <textarea id="editor" style="display: none;">
+# Not sure what to do now? Enter your mips code here 
+# and hit step (to run one line at a time) or 
+# hit run (to run them all at once)
+
+# Keep an eye on the register and stack tracker
+# to see what changes are being made to them.
+
+# If you want to preload the stack or some registers
+# with data, you can click on them to change edit them.
+
+# If you would like more infomation, check out the user
+# guide linked in the menu.
+
+
+ADDI $s0, $zero, 10
+ADDI $s1, $zero, 9
+SB $s0, -10($sp)
+SB $s1, -9($sp)
+LB $s2, -9($sp)
+ADDI $sp, $sp, -1
+ADDI $sp, $sp, -2
+ADDI $sp, $sp, -3
+ADDI $sp, $sp, -5
+ADDI $sp, $sp, -9
+ADDI $sp, $sp, -14
+ADDI $sp, $sp, -23
+ADDI $sp, $sp, -37
+LB $s3, 0($sp)
+            </textarea>
+            <div class="CodeMirror cm-s-default">
+              <div
+                style="
+                  overflow: hidden;
+                  position: relative;
+                  width: 3px;
+                  height: 0px;
+                  top: 298.667px;
+                  left: 159.567px;
+                "
+              >
+                <textarea
+                  style="
+                    position: absolute;
+                    padding: 0px;
+                    width: 1px;
+                    height: 1em;
+                    outline: none;
+                    font-size: 4px;
+                  "
+                  autocorrect="off"
+                  autocapitalize="none"
+                  spellcheck="false"
+                  tabindex="0"
+                  wrap="off"
+                ></textarea>
+              </div>
+              <div class="CodeMirror-hscrollbar" style="left: 24px">
+                <div style="height: 1px; width: 0px"></div>
+              </div>
+              <div class="CodeMirror-vscrollbar">
+                <div style="width: 1px; height: 0px"></div>
+              </div>
+              <div class="CodeMirror-scrollbar-filler"></div>
+              <div class="CodeMirror-gutter-filler"></div>
+              <div class="CodeMirror-scroll" tabindex="-1" draggable="true">
+                <div
+                  class="CodeMirror-sizer"
+                  style="
+                    min-width: 460.5px;
+                    margin-left: 24px;
+                    min-height: 400px;
+                  "
+                >
+                  <div style="position: relative; top: 0px">
+                    <div class="CodeMirror-lines">
+                      <div style="position: relative; outline: none">
+                        <div class="CodeMirror-measure"></div>
+                        <div
+                          style="position: relative; z-index: 1; display: none"
+                        ></div>
+                        <div class="CodeMirror-code" style="">
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                1
+                              </div>
+                            </div>
+                            <pre>
+# Not sure what to do now? Enter your mips code here </pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                2
+                              </div>
+                            </div>
+                            <pre>
+# and hit step (to run one line at a time) or </pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                3
+                              </div>
+                            </div>
+                            <pre># hit run (to run them all at once)</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                4
+                              </div>
+                            </div>
+                            <pre>&nbsp;</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                5
+                              </div>
+                            </div>
+                            <pre>
+# Keep an eye on the register and stack tracker</pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                6
+                              </div>
+                            </div>
+                            <pre>
+# to see what changes are being made to them.</pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                7
+                              </div>
+                            </div>
+                            <pre>&nbsp;</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                8
+                              </div>
+                            </div>
+                            <pre>
+# If you want to preload the stack or some registers</pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                9
+                              </div>
+                            </div>
+                            <pre>
+# with data, you can click on them to change edit them.</pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                10
+                              </div>
+                            </div>
+                            <pre>&nbsp;</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                11
+                              </div>
+                            </div>
+                            <pre>
+# If you would like more infomation, check out the user</pre
+                            >
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                12
+                              </div>
+                            </div>
+                            <pre># guide linked in the menu.</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                13
+                              </div>
+                            </div>
+                            <pre>&nbsp;</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                14
+                              </div>
+                            </div>
+                            <pre>&nbsp;</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                15
+                              </div>
+                            </div>
+                            <pre><span class=" nextLine" title="Next line to be run">ADDI $s0, $zero, 10</span></pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                16
+                              </div>
+                            </div>
+                            <pre>ADDI $s1, $zero, 9</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                17
+                              </div>
+                            </div>
+                            <pre>SB $s0, -10($sp)</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                18
+                              </div>
+                            </div>
+                            <pre>SB $s1, -9($sp)</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                19
+                              </div>
+                            </div>
+                            <pre>LB $s2, -9($sp)</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                20
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -1</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                21
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -2</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                22
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -3</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                23
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -5</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                24
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -9</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                25
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -14</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                26
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -23</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                27
+                              </div>
+                            </div>
+                            <pre>ADDI $sp, $sp, -37</pre>
+                          </div>
+                          <div style="position: relative">
+                            <div style="position: absolute; left: -24px">
+                              <div
+                                class="CodeMirror-linenumber CodeMirror-gutter-elt"
+                                style="left: 0px; width: 15px"
+                              >
+                                28
+                              </div>
+                            </div>
+                            <pre>LB $s3, 0($sp)</pre>
+                          </div>
+                        </div>
+                        <div
+                          class="CodeMirror-cursor"
+                          style="left: 134.9px; top: 294px; height: 14px"
+                        >
+                          &nbsp;
+                        </div>
+                        <div
+                          class="CodeMirror-cursor CodeMirror-secondarycursor"
+                          style="display: none"
+                        >
+                          &nbsp;
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  style="
+                    position: absolute;
+                    height: 30px;
+                    width: 1px;
+                    top: 400px;
+                  "
+                ></div>
+                <div class="CodeMirror-gutters" style="height: 400px">
+                  <div
+                    class="CodeMirror-gutter CodeMirror-linenumbers"
+                    style="width: 23px"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <hr />
+        </div>
+
+        <div id="registers" class="col-lg-4">
+          <button id="step">Upload</button>
+          <button id="run">Run</button>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#s-registers" data-toggle="tab">S</a>
+            </li>
+            <li><a href="#t-registers" data-toggle="tab">T</a></li>
+            <li><a href="#a-registers" data-toggle="tab">A</a></li>
+            <li><a href="#v-registers" data-toggle="tab">V</a></li>
+            <li><a href="#stack-container-div" data-toggle="tab">Stack</a></li>
+            <li><a href="#logWrapper" data-toggle="tab">Log</a></li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div id="dataTabs" class="tab-content">
+            <div class="tab-pane active" id="s-registers">
+              <ul class="registers-container" id="registers-s">
+                <li id="s0">
+                  <b>s0:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s0"
+                    id="s0-val"
+                    contenteditable="true"
+                    >864</span
+                  >
+                </li>
+                <li id="s1">
+                  <b>s1:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s1"
+                    id="s1-val"
+                    contenteditable="true"
+                    >169</span
+                  >
+                </li>
+                <li id="s2">
+                  <b>s2:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s2"
+                    id="s2-val"
+                    contenteditable="true"
+                    >641</span
+                  >
+                </li>
+                <li id="s3">
+                  <b>s3:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s3"
+                    id="s3-val"
+                    contenteditable="true"
+                    >335</span
+                  >
+                </li>
+                <li id="s4">
+                  <b>s4:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s4"
+                    id="s4-val"
+                    contenteditable="true"
+                    >249</span
+                  >
+                </li>
+                <li id="s5">
+                  <b>s5:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s5"
+                    id="s5-val"
+                    contenteditable="true"
+                    >356</span
+                  >
+                </li>
+                <li id="s6">
+                  <b>s6:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s6"
+                    id="s6-val"
+                    contenteditable="true"
+                    >448</span
+                  >
+                </li>
+                <li id="s7">
+                  <b>s7:</b>
+                  <span
+                    class="regSpacer"
+                    reg="s7"
+                    id="s7-val"
+                    contenteditable="true"
+                    >876</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="t-registers">
+              <ul class="registers-container" id="registers-t">
+                <li id="t0">
+                  <b>t0:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t0"
+                    id="t0-val"
+                    contenteditable="true"
+                    >679</span
+                  >
+                </li>
+                <li id="t1">
+                  <b>t1:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t1"
+                    id="t1-val"
+                    contenteditable="true"
+                    >103</span
+                  >
+                </li>
+                <li id="t2">
+                  <b>t2:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t2"
+                    id="t2-val"
+                    contenteditable="true"
+                    >420</span
+                  >
+                </li>
+                <li id="t3">
+                  <b>t3:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t3"
+                    id="t3-val"
+                    contenteditable="true"
+                    >84</span
+                  >
+                </li>
+                <li id="t4">
+                  <b>t4:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t4"
+                    id="t4-val"
+                    contenteditable="true"
+                    >113</span
+                  >
+                </li>
+                <li id="t5">
+                  <b>t5:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t5"
+                    id="t5-val"
+                    contenteditable="true"
+                    >727</span
+                  >
+                </li>
+                <li id="t6">
+                  <b>t6:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t6"
+                    id="t6-val"
+                    contenteditable="true"
+                    >755</span
+                  >
+                </li>
+                <li id="t7">
+                  <b>t7:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t7"
+                    id="t7-val"
+                    contenteditable="true"
+                    >177</span
+                  >
+                </li>
+                <li id="t8">
+                  <b>t8:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t8"
+                    id="t8-val"
+                    contenteditable="true"
+                    >107</span
+                  >
+                </li>
+                <li id="t9">
+                  <b>t9:</b>
+                  <span
+                    class="regSpacer"
+                    reg="t9"
+                    id="t9-val"
+                    contenteditable="true"
+                    >224</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="a-registers">
+              <ul class="registers-container" id="registers-a">
+                <li id="a0">
+                  <b>a0:</b>
+                  <span
+                    class="regSpacer"
+                    reg="a0"
+                    id="a0-val"
+                    contenteditable="true"
+                    >347</span
+                  >
+                </li>
+                <li id="a1">
+                  <b>a1:</b>
+                  <span
+                    class="regSpacer"
+                    reg="a1"
+                    id="a1-val"
+                    contenteditable="true"
+                    >389</span
+                  >
+                </li>
+                <li id="a2">
+                  <b>a2:</b>
+                  <span
+                    class="regSpacer"
+                    reg="a2"
+                    id="a2-val"
+                    contenteditable="true"
+                    >725</span
+                  >
+                </li>
+                <li id="a3">
+                  <b>a3:</b>
+                  <span
+                    class="regSpacer"
+                    reg="a3"
+                    id="a3-val"
+                    contenteditable="true"
+                    >458</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="v-registers">
+              <ul class="registers-container" id="registers-v">
+                <li id="v0">
+                  <b>v0:</b>
+                  <span
+                    class="regSpacer"
+                    reg="v0"
+                    id="v0-val"
+                    contenteditable="true"
+                    >469</span
+                  >
+                </li>
+                <li id="v1">
+                  <b>v1:</b>
+                  <span
+                    class="regSpacer"
+                    reg="v1"
+                    id="v1-val"
+                    contenteditable="true"
+                    >935</span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="tab-pane" id="stack-container-div">
+              <div class="stack-container" id="stack">
+                <div id="stackOptions">
+                  <input type="checkbox" id="optionShowRelative" />
+                  <span id="addrTypeText"
+                    >show relative address<span>
+                      <select class="form-control" id="stackDisplayType">
+                        <option selected="selected">Integer</option>
+                        <option>Ascii</option>
+                        <option>Binary</option>
+                      </select>
+                    </span></span
+                  >
+                </div>
+                <div id="stackRep">
+                  <div id="stackEntry-409677150">
+                    <span class="glyphicon"></span>&nbsp;<span class=""
+                      ><span
+                        class="stackAddrReal stackAddr"
+                        id="stackAddr-409677150"
+                        >409677150: </span
+                      ><span
+                        class="stackAddrRelative stackAddr"
+                        style="display: none"
+                        id="stackAddrRelative-409677150"
+                        >-1: </span
+                      ><span
+                        class="stackVal stackSpacer"
+                        id="stackVal-409677150"
+                        address="409677150"
+                        integer="1"
+                        ascii=""
+                        binary="00000001"
+                        contenteditable="true"
+                        >1</span
+                      ></span
+                    >
+                  </div>
+                  <span class="glyphicon glyphicon-arrow-right"></span>
+                  <span class="" id="stackBottom">
+                    ------------ Frame Pointer ------------
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="logWrapper">
+              <button id="clearLog">Clear Log</button>
+              <hr />
+              <div id="log"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<script src="js/main.js"></script>-->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- <script src="css/bootstrap/js/bootstrap.min.js"></script>-->
+
+    <script src="./js/lib/bootstrap.min.js"></script>
+  </body>
+</html>
