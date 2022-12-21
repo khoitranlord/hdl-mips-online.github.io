@@ -5,6 +5,8 @@
 
 $(document).ready(function(){
     setupTests();
+    var startTime = 0;
+    var endTime = 0;
     var autoSwitch = true;
     // If we ever host this, we can enable sharing this way,
     // as long as the code is short enough to fit in a url.
@@ -38,6 +40,9 @@ $(document).ready(function(){
          */
         onFinish: function(){
             addToLog('success', "Emulation complete, returning to line 1");
+            endTime = performance.now();
+            addToLog('success', "Total running time: " + (endTime - startTime) + " ms");
+
             me.setLine(1);
             setHighlights({lineRan: lastLineNoRun, nextLine: me.getLineNumber()});
             running = false;
@@ -121,7 +126,7 @@ $(document).ready(function(){
     $("#clearLog").on('click', function(){$("#log").html('')});
     $("#stackDisplayType").change(changeStackType);
     //$(".stackVal").on('blur', manualStackEdit); This has to be setup after the stack has been created
-
+    
     // Functions to respond to events.
     function setLine(){
         var newLine = $("#currentLineInput").val();
@@ -239,6 +244,7 @@ $(document).ready(function(){
             + "</span>"
         );
     }
+
     function run(){
         // if this code is no longer valid, reanalyze.
         if(!me.valid){
@@ -246,6 +252,7 @@ $(document).ready(function(){
             me.setCode($("#editor").val());
             me.valid = true;
         }
+        startTime = performance.now();
         running = true;
         var lineRanThisRun = 0;
         var notInfinite = false;
@@ -261,7 +268,9 @@ $(document).ready(function(){
                     "Code has run "
                     + lineRanThisRun
                     + " lines, are you stuck in an infinite loop? (press OK to stop executing)"))
-                    running = false;
+                    {
+                        running = false;
+                    }
                 else
                     notInfinite = true;
         }
